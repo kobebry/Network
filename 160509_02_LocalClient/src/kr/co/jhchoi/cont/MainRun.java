@@ -22,7 +22,7 @@ public class MainRun {
 		// Port 번호 생성
 		// 0~65535 포트번호 지정가능
 		// 60606
-		int _userPort = 60600;
+		int _userPort = 60602;
 		
 		// Socket API 서버에 접근할 수 있도록 구성
 		// 서버 주소 및 포트값 지정
