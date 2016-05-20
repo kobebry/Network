@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function bt1Click(){
+		alert("버튼 클릭")
+	}
+</script>
+</head>
+<body>
+<form action="submit.jsp" name="frm1">
+	<input name="p_name" type="text" autofocus="test">
+	<input name="p_pass" type="password" value="">
+	<p>1-1번 : <input name="p_radio" type="radio" value="1">
+	<p>2-1번 : <input name="p_radio" type="radio" value="2">
+	<p>3-1번 : <input name="p_radio" type="radio" value="3">
+	<p>--------------------------------</p>
+	<p>2-1번 : <input name="p_radio1" type="radio" value="1">
+	<p>2-2번 : <input name="p_radio1" type="radio" value="2">
+	<p>2-3번 : <input name="p_radio1" type="radio" value="3">
+	<p>--------------------------------</p>
+	<p>좋아하는 과일 선택<br>
+	사과<input name="p_chk" type="checkbox" value="a"><br>
+	배<input name="p_chk" type="checkbox" value="b"><br>
+	복숭아<input name="p_chk" type="checkbox" value="c"><br>
+	</p>
+	<p>--------------------------------</p>	
+	<select name="p_combo">
+		<option value="skt">skt</option>
+		<option value="kt">kt</option>
+		<option value="lg">lg</option>		
+	</select>
+	<br>
+	<textarea name="p_tarea" rows="100" cols="100" >나는</textarea>
+	<input type="hidden" value="test" name="p_hidden">
+	<input type="button" value="버튼클릭" name="bt1" onclick="bt1Click()">
+	<input type="submit" value="확인"/>
+</form>
+</body>
+</html>

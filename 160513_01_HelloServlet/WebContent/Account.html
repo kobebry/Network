@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+	function Clickchk(){
+		var form = document.account;		
+		
+		if(form.a_id.value==""){
+			alert("아이디를 입력하세요.")
+			form.a_id.focus();
+		}else if(form.a_pass.value==""){
+			alert("비밀번호를 입력하세요")
+			form.a_pass.focus();
+		}else if(form.a_pass.value != form.a_pass1.value){
+			alert("비밀번호가 같지않습니다.")
+			form.a_pass.focus();
+		}else if(form.a_name.value==""){
+			alert("이름 입력하세요")
+			form.a_name.focus();
+		}
+		var i = 0;
+		var cnt = 0;
+		for(i=0; i<form.gender.length;i++){
+			if(form.gender[i].checked){
+				cnt++
+			}
+		}
+		if(cnt<=0){
+			alert("성별을 선택해주세요");
+			form.gender[0].focus();
+			return;
+		}else if(form.a_birth_y.value==""){
+			alert("생년월일을 입력하세요")
+			form.a.birth_y.focus();
+		}else if(form.a_birth_d.value==""){
+			alert("생년월일을 입력하세요")
+			form.a_birth_d.focus();
+		}else if(form.a_address.value==""){
+			alert("주소를 입력하세요")
+			form.a_address.focus();
+		}else{
+			alert("가입완료")
+		}
+		
+	}
+
+
+</script>
+<style>
+#section{
+	width:800px;
+	padding:10px;
+	text-align:center;
+	background-color: white;	
+}
+#footer{
+    width:500px;
+	background-color: gray;
+	color:white;
+	clear:both;
+	text-align:center;
+	padding:5px;
+}
+
+</style>
+</head>
+<body>
+<form action="subcont.do" name="account">
+<div id="section">
+<h1>회 원 가 입</h1>
+<table border="1" style="width:60%" >
+
+<tr height="60">
+<td><input name="a_id" type="text" placeholder="아이디" size="20" style="width:80%;"></td><td>@naver.com</td><br>
+</tr>
+<tr height="60">
+<td><input name="a_pass" type="password" placeholder="비밀번호" size="20" style="width:80%;"></td><td width="30" height ="20"><img src="/WebStudy/img/lock.png" width="40" height ="30"></td><br>
+</tr> 
+<tr height="60">
+<td><input name="a_pass1" type="password" placeholder="비밀번호확인" size="20" style="width:80%;"></td><td><img src="/WebStudy/img/lockchk.png" width="20" height="20"></td><br>
+</tr>
+</table>
+
+<table border="1" style="width:60%">
+<tr height="60">
+<td><input name="a_name" type="text" placeholder="이름" ></td>
+</tr>
+<tr>
+<td colspan="2">남<input name="gender" type="radio" value="male"> 여<input name="gender" type="radio" value="female"></td>
+</tr>
+<tr>
+<td><input name="a_birth_y" type="text" placeholder="년(4자)">
+<select name="a_combo">
+	<option value="1">1</option>
+	<option value="2">2</option>
+	<option value="3">3</option>
+	<option value="4">4</option>
+	<option value="5">5</option>
+	<option value="6">6</option>
+	<option value="7">7</option>
+	<option value="8">8</option>
+	<option value="9">9</option>
+	<option value="10">10</option>
+	<option value="11">11</option>
+	<option value="12">12</option>	
+</select>
+<input name="a_birth_d" type="text" placeholder="일">
+</td>
+</tr>
+<tr>
+<td><input name="a_address" type="text" placeholder="주소" width="100%"></td>
+</tr>
+</table>
+</div>
+
+<div id="footer">
+<table>
+<input type="submit" value="가입하기" name="bt1" onclick="Clickchk()" size="80">
+</table>
+</div>
+</form>
+</body>
+</html>

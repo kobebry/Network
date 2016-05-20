@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function bt1Click(){
+		alert("버튼 클릭")
+	}
+	
+	function formchk(){
+		//input 입력해야 할 부분에 빈 값이 없도록 구성하기
+		var form = document.frm1;
+		//alert(form.p_name.value);
+		if(form.p_name.value==""){
+			alert("p_name 값을 입력하세요.")
+			form.p_name.focus();
+		}else if(form.p_path.value==""){
+			alert("p_path값을 입력하세요")	
+			form.p_path.focus();
+		}
+		var i = 0;
+		var cnt = 0;
+		for(i=0;i<form.p_chk.lenght;i++){
+			if(form.p_chk[i].checked){
+				cnt++
+			}			
+		}
+		if(cnt==0){
+			alert("p_chk값을 한개 이상 입력하세요");
+			form.p_chk[0].focus();
+		}
+
+	}
+</script>
+</head>
+<body>
+<form action="submit.jsp" name="frm1">
+	<input name="p_name" type="text" autofocus="test">
+	<input name="p_path" type="password" value="">
+	<p>1-1번 : <input name="p_radio" type="radio" value="1">
+	<p>2-1번 : <input name="p_radio" type="radio" value="2">
+	<p>3-1번 : <input name="p_radio" type="radio" value="3">
+	<p>--------------------------------</p>
+	<p>2-1번 : <input name="p_radio1" type="radio" value="1">
+	<p>2-2번 : <input name="p_radio1" type="radio" value="2">
+	<p>2-3번 : <input name="p_radio1" type="radio" value="3">
+	<p>--------------------------------</p>
+	<p>좋아하는 과일 선택<br>
+	사과<input name="p_chk" type="checkbox" value="a"><br>
+	배<input name="p_chk" type="checkbox" value="b"><br>
+	복숭아<input name="p_chk" type="checkbox" value="c"><br>
+	</p>
+	<p>--------------------------------</p>	
+	<select name="p_combo">
+		<option value="skt">skt</option>
+		<option value="kt">kt</option>
+		<option value="lg">lg</option>		
+	</select>
+	<br>
+	<textarea name="p_tarea" rows="100" cols="100" >나는</textarea>
+	<input type="hidden" value="test" name="p_hidden">
+	<input type="button" value="버튼클릭" name="bt1" onclick="formchk()">
+	<input type="submit" value="확인"/>
+</form>
+</body>
+</html>

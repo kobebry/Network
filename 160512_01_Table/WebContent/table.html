@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+
+</head>
+<body>
+<table border="1" style="width:100%">
+	<tr>
+		<td>a</td>
+		<td rowspan="2">b</td>
+		<td>c</td>
+		<td rowspan="2">d</td>
+	</tr>
+	<tr>
+		<td rowspan="3">e</td>
+		<td>f</td>						
+	</tr>
+	<tr>		
+		<td>g</td>		
+		<td colspan="2" rowspan="2">h</td>				
+	</tr>
+	<tr>
+		<td>i</td>		
+	</tr>
+</table>
+
+<iframe src="table2.html" width="800" height="600" name="ifb"></iframe>
+<br>
+<iframe src="table2.html" width="800" height="600" name="ifa"></iframe>
+<a href="table2.html" target="ifb">Frameb Test</a>
+<a href="http://localhost:8805" target="ifa">Framea Test</a>
+
+</body>
+</html>

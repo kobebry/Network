@@ -31,7 +31,7 @@ class ServerThread extends Thread {
 				if (_clientData.equals("exit")) {
 					break;
 				}
-				System.out.println("Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ®ï¿½Îºï¿½ï¿½ï¿½ï¿½ï¿½ data : " + _clientData);
+				System.out.println("Å¬¶óÀÌ¾ðÆ®·ÎºÎÅÍÀÇ data : " + _clientData);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -63,7 +63,7 @@ public class MainRun {
 
 			while (a) {
 				_socket = _userSS.accept();
-				System.out.println("ì„œë²„ëŒ€ê¸°");
+				System.out.println("¿¬°áµÊ");
 				
 				st = new ServerThread(_socket);
 				st.start();
