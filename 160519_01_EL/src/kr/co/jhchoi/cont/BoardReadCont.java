@@ -67,6 +67,14 @@ public class BoardReadCont extends HttpServlet {
 			request.setAttribute("BID", b_id);
 			request.setAttribute("error", request.getParameter("error"));
 			move(request, response, "board_delete.jsp");			
+		}else if(p_code.equals("reply")){
+			String url = "board_input.jsp";
+			String p_bid = request.getParameter("p_bid");
+			request.setAttribute("REP", "reply");
+			request.setAttribute("P_BID", p_bid);
+			move(request,response,url);
+			
+			
 		}
 		
 	}

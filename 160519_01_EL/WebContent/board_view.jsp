@@ -30,6 +30,14 @@
 		v_form.action="read.do";
 		v_form.submit();		
 	}
+	function b_reply(){
+		var v_form = document.form_view;
+		// p_code = modify;
+		v_form.p_code.value="reply";
+		// action = read.do
+		v_form.action="read.do";
+		v_form.submit();
+	}
 </script>
 <title>::글 보기::</title>
 </head>
@@ -78,6 +86,7 @@
 	<input type="button" value="수정하기" onclick="b_modify()">
 	<input type="button" value="삭제하기" onclick="b_delete()">
 	<input type="button" value="목록보기" onclick="b_list()">
+	<p><input type="button" value="댓글달기" onclick="b_reply()"> </p>	
 	</p>
 	<input type="hidden" name="p_code">
 	<input type="hidden" name="p_bid" value="${BDTO.board_id}">

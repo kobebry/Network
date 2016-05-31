@@ -1,4 +1,4 @@
-package kr.co.jhchoi.cont;
+package kr.co.kitri04.cont;
 
 import java.io.IOException;
 
@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.co.jhchoi.model.BoardDao;
-import kr.co.jhchoi.model.BoardDto;
+import kr.co.kitri04.model.BoardDao;
+import kr.co.kitri04.model.BoardDto;
 
 /**
  * Servlet implementation class BoardWriteCont
@@ -19,65 +19,69 @@ import kr.co.jhchoi.model.BoardDto;
 public class BoardWriteCont extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//DBì— ì‹¤ì œ ê°’ì„ ì „ë‹¬í•˜ì—¬ ì…ë ¥í•  ìˆ˜ ìˆëŠ” ê¸°ëŠ¥ì˜ ì»¨íŠ¸ë¡¤ëŸ¬
-		//DML ë¬¸ ì‹¤í–‰ ì‹œ ì ‘ê·¼í•   ì»¨íŠ¸ë¡¤ëŸ¬
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		System.out.println(request.getRemoteAddr());
+		// DB¿¡ ½ÇÁ¦ °ªÀ» Àü´ŞÇÏ¿© ÀÔ·ÂÇÒ ¼ö ÀÖ´Â ±â´ÉÀÇ ÄÁÆ®·Ñ·¯
+		// DML ¹® ½ÇÇà ½Ã Á¢±ÙÇÒ ÄÁÆ®·Ñ·¯
+		// Code°ª È£Ãâ = p_code
+		//
 		request.setCharacterEncoding("EUC-KR");
 		response.setCharacterEncoding("EUC-KR");
 		String p_code = request.getParameter("p_code");
-
-		if(p_code.equals("write_ok")){
-			// board_input.jspì—ì„œ ë°›ì•„ ì˜¬ íŒŒë¼ë¯¸í„°ê°’ì„ ì„¸íŒ…í•˜ì—¬ Daoë¥¼ í†µí•´ ì‹¤í–‰
+		if (p_code.equals("write_ok")) {
+			// board_input.jsp ¿¡¼­ ¹Ş¾Æ ¿Ã ÆÄ¶ó¹ÌÅÍ°ªÀ»
+			// ¼¼ÆÃÇÏ¿© Dao¸¦ ÅëÇØ ½ÇÇà
 			BoardDto bDto = new BoardDto();
 			bDto.setTitle(request.getParameter("title"));
 			bDto.setWriter(request.getParameter("writer"));
 			bDto.setPassword(request.getParameter("password"));
 			bDto.setPds_link(request.getParameter("pds_link"));
 			bDto.setContents(request.getParameter("contents"));
-			
-			//bDtoë¥¼ DAO ì „ë‹¬ í•œ í›„ DBì „ì†¡
+
+			// bDto¸¦ DAO Àü´ŞÇÑ ÈÄ DB Àü¼Û
 			BoardDao bd = new BoardDao();
 			int chk = bd.writeContents(bDto);
-			//ê¸€ëª©ë¡ìœ¼ë¡œ ì´ë™
-			if(chk ==1){
+			// ±Û ¸ñ·ÏÀ¸·Î °¥ ¼ö ÀÖµµ·Ï ±¸¼º
+			if (chk == 1) {
 				move(request, response, "read.do?p_code=list");
-			}		
-		}else if(p_code.equals("modify_ok")){
+			} else {
+
+			}
+		} else if (p_code.equals("modify_ok")) {
+			// ¼öÁ¤ ÀÛ¾÷ ¿Ï·á ½ÃÅ°±â
 			BoardDto bDto = new BoardDto();
+			bDto.setBoard_id(Integer.parseInt(request.getParameter("p_bid")));
 			bDto.setTitle(request.getParameter("title"));
 			bDto.setWriter(request.getParameter("writer"));
 			bDto.setPassword(request.getParameter("password"));
 			bDto.setPds_link(request.getParameter("pds_link"));
 			bDto.setContents(request.getParameter("contents"));
-			bDto.setBoard_id(Integer.parseInt(request.getParameter("p_bid")));
-			
-			//ìˆ˜ì •ë  ê°’ DAOì— ì „ë‹¬
+
+			// ¼öÁ¤ µÉ °ª Dao ¿¡ Àü´Ş
 			BoardDao bd = new BoardDao();
 			int chk = bd.modifyContents(bDto);
-			if(chk ==1){
-				move(request, response, "read.do?p_code=contents&b_id="+bDto.getBoard_id());
-			}	
-			
-		}else if(p_code.equals("delete_ok")){
-			BoardDto bDto = new BoardDto();
-			//bDto.setBoard_id(request.getParameter("board_id"));
-			bDto.setPassword(request.getParameter("password"));
-			bDto.setBoard_id(Integer.parseInt(request.getParameter("p_bid")));
-			
-			BoardDao bd = new BoardDao();			
-/*			String password = bd.getPassword(bDto.getBoard_id());
-			
-			bDto.getPassword();*/
-			
-			int chk = bd.deleteContents(bDto);			
-			if(chk ==1){
-				move(request, response, "read.do?p_code=list");
-			}else{
-				move(request, response, "read.do?p_code=delete&error=ok");
+			if (chk == 1) {
+				move(request, response, "read.do?p_code=contents&b_id=" + bDto.getBoard_id());
+			} else {
+
 			}
-		}else if(p_code.equals("list")){
-			move(request, response, "read.do?p_code=list");
-		}else if (p_code.equals("rep_write_ok")){
+
+		} else if (p_code.equals("delete_ok")) {
+			String b_id = request.getParameter("p_bid");
+			BoardDao bDao = new BoardDao();
+			int chk = bDao.delContents(b_id);
+
+			if (chk == 1) {
+				move(request, response, "read.do?p_code=list");
+			} else {
+
+			}
+		} else if (p_code.equals("rep_write_ok")){
 			String b_id = request.getParameter("p_bid");
 			
 			BoardDto bDto = new BoardDto();
@@ -95,8 +99,17 @@ public class BoardWriteCont extends HttpServlet {
 			} else {
 
 			}
+			
+			
+			
 		}
+
 	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -108,10 +121,12 @@ public class BoardWriteCont extends HttpServlet {
 		try {
 			rd.forward(req, resp);
 		} catch (ServletException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
+
 }

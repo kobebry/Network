@@ -8,28 +8,23 @@
 <script type="text/javascript">
 	function w_accept(c) {
 		var form1 = document.board_form;
-		if (c == "mod") {
-			form1.p_code.value = "modify_ok";
-		} else if (c == "add") {
+		if (c == "mod") {			
+			form1.p_code.value = "modify_ok";	
+		} else if (c == "add") {			
 			form1.p_code.value = "write_ok";
 		} else if (c == "re_add") {
 			form1.p_code.value = "rep_write_ok";
 		}
 		form1.submit();
 	}
-	function w_list() {
-		var form1 = document.board_form;
-		form1.p_code.value = "list";
-		form1.submit();
-	}
 </script>
 
 <title><c:choose>
-		<c:when test="${BDTO ne null}">::글 수정::</c:when>
-		<c:otherwise>::글 작성</c:otherwise>
+		<c:when test="${BDTO ne null}">:: 글 수정 ::</c:when>
+		<c:when test="${REP eq 'reply'}">:: 댓글 작성 ::</c:when>
+		<c:otherwise>:: 글 작성 ::</c:otherwise>
 	</c:choose></title>
 </head>
-
 <body>
 	<form action="write.do" method="post" name="board_form">
 		<table border="1">
@@ -43,11 +38,9 @@
 					value='<c:if test="${BDTO ne null}">${BDTO.title}</c:if>'></td>
 				<td><input type="text" name="writer"
 					value='<c:if test="${BDTO ne null}">${BDTO.writer}</c:if>'></td>
-				<td><input type="password" name="password"
+				<td><input type="text" name="password"
 					value='<c:if test="${BDTO ne null}">${BDTO.password}</c:if>'></td>
 			</tr>
-
-
 			<tr>
 				<th colspan="3">첨부파일</th>
 			</tr>
@@ -57,8 +50,8 @@
 				</td>
 			</tr>
 			<tr>
-				<th colspan="2">본문 내용</th>
-				<td colspan="3"><textarea rows="10" cols="20" name="contents"><c:if
+				<th>본문 내용</th>
+				<td><textarea rows="60" cols="80" name="contents"><c:if
 							test="${BDTO ne null}">${BDTO.contents}</c:if></textarea></td>
 			</tr>
 		</table>
@@ -70,17 +63,18 @@
 				</p>
 			</c:when>
 			<c:when test="${REP eq 'reply'}">
-				<input type="hidden" name="p_bid" value="${P_BID}">
+				<input type="hidden" name="p_bid" value="${P_BID}">				
 				<input type="button" value="작성" onclick="w_accept('re_add')">
-			</c:when>
+			</c:when>			
 			<c:otherwise>
 				<p>
 					<input type="button" value="작성" onclick="w_accept('add')">
 				</p>
 			</c:otherwise>
 		</c:choose>
-		<input type="hidden" name="p_code" value="">
-
+		
+		<input type="hidden" name="p_code">
+		
 	</form>
 </body>
 </html>

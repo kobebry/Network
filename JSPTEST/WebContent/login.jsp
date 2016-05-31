@@ -22,7 +22,7 @@
 <form action="abc.do" name="loginform" method="post">
 <p>로그인 페이지</p>
 <p> 아이디 : <input name="id" type="text" ></p><br>
-<p> 이른 : <input name="name" type="text" ></p><br>
+<p> 이름 : <input name="name" type="text" ></p><br>
 <p> 비밀번호 : <input name="pass" type="password"></p><br>
 <p><input name="code" type="hidden" ></p>
 <p><input name="p_bt_login" type="button" value="로그인" onclick="login()"></p>

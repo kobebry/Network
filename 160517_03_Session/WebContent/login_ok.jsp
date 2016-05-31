@@ -24,6 +24,7 @@
 <p>사용자 번호 : <%=hs.getAttribute("empno") %> <br>
 <p>사용자 이름 : <%=request.getAttribute("ename") %>
 
+<input type="hidden" name=<%=hs.getAttribute("empno") %>>
 <form name="logoutForm" method="post" action="login.do">
 		<input name="p_code" type="hidden">
 		<input name="mod_emp" value="정보수정" type="button" onclick="empmod()">
